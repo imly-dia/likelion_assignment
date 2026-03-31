@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>기초대사량 계산기</title>
+
+  <style>
+    body{
+        background-color: #FFF0F5;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .box {
+        background-color: white;
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    button {
+        width: 85%;
+        padding: 10px;
+        background-color: #FFB6C1;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    #result {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #D87093;
+    }
+  </style>
+</head>
+
+<body>
+  <div class = "box">
+    <h1>🦁 BMR 계산기</h1>
+
+    <select id="gender">
+        <option value=""male">남성</option>
+        <option value="female">여성</option>
+    </select>
+
+    <input type="nubmer" id="height" placeholder="키(cm) 입력">
+    <input type="number" id="weight" placeholder="몸무게(kg) 입력">
+    <input type="number" id="age" placeholder="나이 입력">
+    
+    <button onclick="calculate()">계산하기</button>
+    <div id="result">결과</div>
+  </div>  
+  <script>
+    function calculate() {
+      const height = document.getElementById("height").value;
+      const weight = document.getElementById("weight").value;
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+
+      let bmr;
+
+      if (gender === "male") {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      }
+
+      document.getElementById("result").innerText =
+        "결과: " + Math.round(bmr) + " kcal"; //round는 반올림 함수
+    }
+  </script>
+</body>
+</html>
